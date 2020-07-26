@@ -177,9 +177,9 @@ LOCAL
 EOF
 
 # 日本語環境をインストール 
-sudo apt install language-pack-ja
-sudo update-locale LANG=ja_JP.UTF-8
-sudo apt install fcitx-mozc
+apt install language-pack-ja
+update-locale LANG=ja_JP.UTF-8
+apt install fcitx-mozc
 
 # キーボードを日本語設定
 dpkg-reconfigure keyboard-configuration
