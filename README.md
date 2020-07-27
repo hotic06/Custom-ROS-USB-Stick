@@ -205,3 +205,40 @@ USBメモリをPCに接続する。FAT32でフォーマットをする。必ずF
 2. そのすぐ下の「スペースは、・・・使用(Ubuntuのみ)」に4096(MB)と入力（4096MBはFAT32の制約からくる上限）
 3. タイプ「USB ドライブ」ドライブを選択し、OKをクリック
 （10分ほどかかります）
+
+## USBからの起動
+USBメモリをさしたままにして、Windowsを再起動してください。
+うまくいけば、Lubuntuが起動します。
+
+起動しない場合、BIOSの設定で、起動順番をUSBメモリが１番目になるようにしてください。
+また、UEFIモードに設定されている場合と、Secure Bootが有効になっている場合は起動しない場合があります。
+Legacyモードに設定し、Secure Bootを無効にすると起動する場合があります。
+
+## ROS環境のセットアップ
+ほぼ環境はできあがっていますが、
+いくつか初期設定が必要です。
+
+まず端末の起動方法ですが、左下のメニューのシステムツール→LxTerminalで、端末が起動します。
+
+まず、環境設定をしましょう。
+```
+sudo rosdep init
+rosdep update
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+つぎに、ワークスペース作成です。
+```
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+catkin_init_workspace
+cd ~/catkin_ws/
+catkin_make
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+その後は、
+https://github.com/OneNightROBOCON/burger_war
+を参考にしてください。
