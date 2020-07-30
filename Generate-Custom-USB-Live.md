@@ -11,7 +11,7 @@
 https://github.com/hotic06/Custom-ROS-USB-Stick/releases/
 
 GitHubの容量制限があるため、ファイルは２分割されている。
-下記の方法で結合してから、
+リリースに記載した方法で結合してから、
 ISOファイルをUSBメモリに
 [イメージの書き込み](#イメージの書き込み)の手順で書き込む。
 
