@@ -6,6 +6,16 @@
 - 参考[How To Customize Ubuntu Or Linux Mint Live ISO With Cubic](https://www.linuxuprising.com/2018/07/how-to-customize-ubuntu-or-linux-mint.html)
 - 参考[How to create a custom Ubuntu ISO with Cubic](https://www.techrepublic.com/article/how-to-create-a-custom-ubuntu-iso-with-cubic/)
 
+下記の手順で作成したISOファイルをこのレポジトリのリリースに掲載している。
+
+https://github.com/hotic06/Custom-ROS-USB-Stick/releases/
+
+GitHubの容量制限があるため、ファイルは２分割されている。
+下記の方法で結合してから、
+ISOファイルをUSBメモリに
+[イメージの書き込み](#イメージの書き込み)の手順で書き込む。
+
+
 ### Cubicをインストール
 ```
 sudo apt-add-repository ppa:cubic-wizard/release
