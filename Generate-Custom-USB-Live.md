@@ -73,6 +73,17 @@ install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 apt update
 apt install code
+
+# Gazeboの初回起動時にインターネット接続が無くても起動できるように、モデルをあらかじめダウンロード
+mkdir -p /home/lubuntu/.gazebo/models
+mkdir ~/gazebo-world/
+cd ~/gazebo-world
+apt install subversion
+svn export https://github.com/osrf/gazebo_models/branches/master/sun
+svn export https://github.com/osrf/gazebo_models/branches/master/ground_plane
+chown -R 999:999 /home/lubuntu
+rm -rf ~/gazebo-world
+
 ```
 #### 4. Nextをクリック
 #### 5. kernelの選択などの画面になるが、特に変更せずGenerateをクリック
@@ -89,20 +100,25 @@ USBメモリをPCに接続する。FAT32でフォーマットをする。必ずF
 （10分ほどかかります）
 
 ## USBからの起動
-USBメモリをさしたままにして、Windowsを再起動してください。
-うまくいけば、Lubuntuが起動します。
+USBメモリをさしたままにして、Windowsを再起動する。
+うまくいけば、Lubuntuが起動する。
 
-起動しない場合、BIOSの設定で、起動順番をUSBメモリが１番目になるようにしてください。
-また、UEFIモードに設定されている場合と、Secure Bootが有効になっている場合は起動しない場合があります。
-Legacyモードに設定し、Secure Bootを無効にすると起動する場合があります。
+起動しない場合、BIOSの設定で、起動順番をUSBメモリが１番目になるようにしなければならない。
+また、UEFIモードに設定されている場合と、Secure Bootが有効になっている場合は起動しない場合がある。
+Legacyモードに設定し、Secure Bootを無効にすると起動するだろう。
 
 ## ROS環境のセットアップ
-ほぼ環境はできあがっていますが、
-いくつか初期設定が必要です。
+ほぼ環境はできあがっているが、
+いくつか初期設定をする必要がある。
 
-まず端末の起動方法ですが、左下のメニューのシステムツール→LxTerminalで、端末が起動します。
+まず端末の起動する。左下のメニューのシステムツール→LxTerminalで、端末が起動する。
 
-まず、環境設定をしましょう。
+
+基本的には、
+https://github.com/OneNightROBOCON/burger_war
+に書かれたことを行う。（ただし、ROSと依存ライブラリのインストールは既に完了している）
+
+まず、環境設定をする。
 ```
 sudo rosdep init
 rosdep update
@@ -110,7 +126,7 @@ echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-つぎに、ワークスペース作成です。
+つぎに、ワークスペース作成する。
 ```
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
@@ -124,3 +140,10 @@ source ~/.bashrc
 その後は、
 https://github.com/OneNightROBOCON/burger_war
 を参考にしてください。
+
+## Lubuntu Tips
+- エディター（メモ帳）⇒Leafpad
+- WiFiの設定⇒右下のネットワークアイコン
+- ブラウザー（Firefox）⇒左下のスタートメニューの横に並んでいる
+- ファイラー⇒左下のスタートメニューの横に並んでいる
+- 日本語変換⇒Ctrl+スペースで日本語変換がONになる
